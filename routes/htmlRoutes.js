@@ -1,15 +1,7 @@
-var db = require('../models');
+var path = require('path');
 
 module.exports = function(app) {
-    app.get('', function(req, res) {
-        db.Workout.find({}).then(function(dbWorkout) {
-            res.json();
-        });
-    });
-
-    app.put('', function(req, res){
-        db.Workout.update({ _id: req.params.id }, {}).then(function() {
-            res.json();
-        });
+    app.get('*', function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/index.html'));
     });
 };
