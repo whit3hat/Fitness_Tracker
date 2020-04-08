@@ -1,15 +1,20 @@
 var db = require('../models');
 
 module.exports = function(app) {
-    app.get('', function(req, res) {
-        db.Workout.find({}).then(function(dbWorkout) {
-            res.json();
+    // app.get('', function(req, res) {
+    //     db.Workout.find({}).then(function(dbWorkout) {
+    //         res.json();
+    //     });
+    // });
+
+    app.get('/api/workouts', (req, res) => {
+      db.Workout.find({})
+        .then(dbWorkout => {
+          res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.json(err);
         });
     });
 
-    app.put('', function(req, res){
-        db.Workout.update({ _id: req.params.id }, {}).then(function() {
-            res.json();
-        });
-    });
 };
