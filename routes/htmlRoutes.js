@@ -5,8 +5,11 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, '../public/index.html'));
     });
 
-    app.post('/submit', (req,res) => {
-        console.log(req.body);
-        db.workout.insert(req.)
-    })
+    app.get('/exercise', (req,res) => {
+       res.sendFile(path.join(__dirname, '../public/exercise.html'));
+    });
+
+    app.get('/stats', (req,res)=> {
+        res.sendFile(path.join(__dirname, '../public/stats.html'));
+    });
 };
