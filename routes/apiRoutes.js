@@ -18,17 +18,17 @@ router.get('/api/workouts', (req, res) => {
     Workout.find({})
     .sort({ date: -1 })
     .then((result) => {
-        result.forEach((exercise) => {
+        result.forEach((workout) => {
             let total = 0;
-            workout.exercises.forEach((exercise) => {
-             total += exercise.duration;
+            workout.name.forEach((name) => {
+             total += name.duration;
             });
         workout.totalDuration = total;
-    });
-    res.json(result);
-})
-.catch((err) => {
-    res.status(404).json(err);
+        });
+        res.json(result);
+    })
+    .catch((err) => {
+        res.status(404).json(err);
     });
 });
 
@@ -47,7 +47,7 @@ router.get('/api/workouts/range', (req, res) => {
 router.put('/api/workouts/:id', (req, res) => {
     Workout.updateOne({_id: req.params.id}, {
         $push: {
-            exercises: req.body,
+            name: req.body,
         },
     })
     .then((result) => {
