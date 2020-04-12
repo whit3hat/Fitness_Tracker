@@ -45,7 +45,7 @@ router.get('/api/workouts/range', (req, res) => {
 
 //add a workout to the plan
 router.put('/api/workouts/:id', (req, res) => {
-    Workout.updateOne({_id: req.params.id}, {
+    Workout.updateOne({ _id: req.params.id }, {
         $push: {
             name: req.body,
         },
