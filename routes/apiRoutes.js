@@ -20,8 +20,8 @@ router.get('/api/workouts', (req, res) => {
     .then((result) => {
         result.forEach((workout) => {
             let total = 0;
-            workout.name.forEach((name) => {
-             total += name.duration;
+            workout.exercies.forEach((exercie) => {
+             total += exercie.duration;
             });
         workout.totalDuration = total;
         });
@@ -47,7 +47,7 @@ router.get('/api/workouts/range', (req, res) => {
 router.put('/api/workouts/:id', (req, res) => {
     Workout.updateOne({ _id: req.params.id }, {
         $push: {
-            name: req.body,
+            exercies: req.body,
         },
     })
     .then((result) => {
